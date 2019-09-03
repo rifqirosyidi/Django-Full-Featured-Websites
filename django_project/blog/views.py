@@ -24,6 +24,7 @@ class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    paginate_by = 2
 
 
 class PostDetailView(DetailView):
@@ -57,7 +58,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
-
 
     def test_func(self):
         post = self.get_object()
